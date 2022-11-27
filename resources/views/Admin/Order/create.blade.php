@@ -13,6 +13,25 @@
             });
         });
     </script>
+
+
+    <script>
+        lunchTime = document.getElementById("lunch-time")
+        dinnerTime = document.getElementById("dinner-time")
+
+        selectBox = document.getElementById("selectbox")
+
+        selectBox.addEventListener("change",function(e){
+        if(this.value == "dinner"){
+            lunchTime.classList.add("d-none")
+            dinnerTime.classList.remove("d-none")
+        }
+        if(this.value == "lunch"){
+        dinnerTime.classList.add("d-none")
+        lunchTime.classList.remove("d-none")
+        }
+        })
+    </script>
 @endpush
 @section('content')
     <div class="d-flex justify-content-between align-items-center">
@@ -70,7 +89,7 @@
 
 {{--        lunch time      --}}
 
-        <div class="my-3 row g-3 align-items-center">
+        <div id="lunch-time" class="my-3 row g-3 align-items-center">
             <div class="col-auto">
                 <label for="time" class="col-form-label">ساعت رزرو</label>
             </div>
@@ -93,7 +112,7 @@
 
 {{--        dinner time       --}}
 
-        <div class="my-3 row g-3 align-items-center">
+        <div id="dinner-time" class="d-none my-3 row g-3 align-items-center">
             <div class="col-auto">
                 <label for="time" class="col-form-label">ساعت رزرو</label>
             </div>
