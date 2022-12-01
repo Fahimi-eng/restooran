@@ -38,8 +38,7 @@
         <h4 class="m-5 d-inline-block">ثبت سفارش</h4>
         <a class="btn btn-primary m-5" href="{{ route('panel.food') }}"> بازگشت به صفحه قبل</a>
     </div>
-
-    <form dir="rtl" action="{{ route('panel.food.store') }}" method="post" class="form m-5" enctype="multipart/form-data">
+    <form dir="rtl" action="{{ route('panel.order.store') }}" method="post" class="form m-5">
         @csrf
         @method('POST')
         <div class="row g-3 align-items-center mb-5">
@@ -55,13 +54,12 @@
                 </span>
             </div>
         </div>
-
         <div class="row g-3 align-items-center mb-5">
             <div class="col-auto">
                 <label for="phone" class="col-form-label">تلفن</label>
             </div>
             <div class="col-auto">
-                <input required name="name" type="text" id="phone" class="form-control" aria-describedby="passwordHelpInline">
+                <input required name="phone" type="text" id="phone" class="form-control" aria-describedby="passwordHelpInline">
             </div>
             <div class="col-auto">
                 <span id="phone" class="form-text">
@@ -69,7 +67,6 @@
                 </span>
             </div>
         </div>
-
         <div class="my-3 row g-3 align-items-center">
             <div class="col-auto">
                 <label for="selectbox" class="col-form-label">وعده</label>
@@ -86,9 +83,7 @@
                 </span>
             </div>
         </div>
-
 {{--        lunch time      --}}
-
         <div id="lunch-time" class="my-3 row g-3 align-items-center">
             <div class="col-auto">
                 <label for="time" class="col-form-label">ساعت رزرو</label>
@@ -109,9 +104,7 @@
                 </span>
             </div>
         </div>
-
 {{--        dinner time       --}}
-
         <div id="dinner-time" class="d-none my-3 row g-3 align-items-center">
             <div class="col-auto">
                 <label for="time" class="col-form-label">ساعت رزرو</label>
@@ -132,13 +125,12 @@
                 </span>
             </div>
         </div>
-
         <div class="row my-3 g-3 align-items-center">
             <div class="col-auto">
                 <label for="date" class="col-form-label">تاریخ</label>
             </div>
             <div class="col-auto">
-                <input id="date" type="text" class="example1 form-control" />
+                <input name="date" required id="date" type="text" class="example1 form-control" />
             </div>
             <div class="col-auto">
                 <span id="date" class="form-text">
@@ -146,30 +138,28 @@
                 </span>
             </div>
         </div>
-
         <div class="my-3 row g-3 align-items-center">
             <div class="col-auto">
-                <label for="table" class="col-form-label">تعداد میهمان</label>
+                <label for="guest" class="col-form-label">تعداد میهمان</label>
             </div>
             <div class="col-auto">
-                <input type="number" min="1" max="10" class="form-control">
+                <input id="guest" type="number" min="1" max="10" class="form-control">
             </div>
             <div class="col-auto">
-                <span id="table" class="form-text">
+                <span id="guest" class="form-text">
                 تعیین
                 </span>
             </div>
         </div>
-
         <div class="my-3 row g-3 align-items-center">
             <div class="col-auto">
                 <label for="table" class="col-form-label">میز</label>
             </div>
             <div class="col-auto">
-                <select name="time" id="table" class="form-select form-control" aria-label="Default select example">
-                    <option value="1">میز شماره یک - 4 صندلی</option>
-                    <option value="2">میز شماره دو - 2 صندلی</option>
-                    <option value="3">میز شماره سه - 5 صندلی</option>
+                <select required name="table" id="table" class="form-select form-control" aria-label="Default select example">
+                    <option value="t1">میز شماره یک - 4 صندلی</option>
+                    <option value="t2">میز شماره دو - 2 صندلی</option>
+                    <option value="t3">میز شماره سه - 5 صندلی</option>
                 </select>
             </div>
             <div class="col-auto">
@@ -178,14 +168,35 @@
                 </span>
             </div>
         </div>
-
-
-
-
+        <div class="row my-3 g-3 align-items-center">
+            <div class="col-auto">
+                <label for="food_1" class="col-form-label">خورشت قیمه </label>
+            </div>
+            <div class="col-auto">
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input name="check_food1" value="yes" class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
+                    </div>
+                    <input name="number1" type="number" class="form-control" placeholder="تعداد" aria-label="Text input with checkbox">
+                </div>
+            </div>
+        </div>
+        <div class="row my-3 g-3 align-items-center">
+            <div class="col-auto">
+                <label for="food_2" class="col-form-label"> قورمه سبزی</label>
+            </div>
+            <div class="col-auto">
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input name="check_food2" class="form-check-input mt-0" type="checkbox" value="yes" aria-label="Checkbox for following text input">
+                    </div>
+                    <input name="number2" type="number" class="form-control" placeholder="تعداد" aria-label="Text input with checkbox">
+                </div>
+            </div>
+        </div>
         {{--        ---------------------------------         --}}
         <div class="mt-5">
             <button type="submit" class="btn btn-primary">ثبت</button>
         </div>
     </form>
-
 @endsection

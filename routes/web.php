@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\foodController;
 use App\Http\Controllers\Admin\orderController;
 use App\Http\Controllers\Admin\tableController;
+use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,10 +30,10 @@ Route::prefix('panel')->name('panel.')->group(function (){
 
     //Order Routes
     Route::get('order/create',[orderController::class,'create'])->name('order.create');
+    Route::post('order/store',[orderController::class,'store'])->name('order.store');
 
 });
 
 //Client Routes
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [homeController::class,'index'])->name('home');
+Route::get('/order', [homeController::class,'order'])->name('order');

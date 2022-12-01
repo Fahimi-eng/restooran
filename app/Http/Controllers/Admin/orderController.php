@@ -16,4 +16,9 @@ class orderController extends Controller
     {
         return view('Admin.Order.create');
     }
+
+    public function store(Request $request)
+    {
+        dd($request);
+    }
 }
