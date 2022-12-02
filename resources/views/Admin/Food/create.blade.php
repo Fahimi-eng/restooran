@@ -36,23 +36,6 @@
             </div>
         </div>
 
-        <div class="my-3 row g-3 align-items-center">
-            <div class="col-auto">
-                <label for="selectbox" class="col-form-label">وعده</label>
-            </div>
-            <div class="col-auto">
-                <select name="meal" id="selectbox" class="form-select form-control" aria-label="Default select example">
-                    <option value="lunch" selected>نهار</option>
-                    <option value="dinner">شام</option>
-                </select>
-            </div>
-            <div class="col-auto">
-                <span id="selectbox" class="form-text">
-                یک وعده را انتخاب نمایید
-                </span>
-            </div>
-        </div>
-
         <div class="row my-3 g-3 align-items-center">
             <div class="col-auto">
                 <label class="col-form-label" for="inputGroupFile02">عکس غذا</label>

@@ -57,13 +57,13 @@
                     </ul>
                 </li>
                 <li class="first-li third">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <span>صفحات</span>
+                    <i class="fa-solid fa-wrench"></i>
+                    <span>تنظیمات</span>
                     <i class="fa-solid fa-angle-down"></i>
                     <ul class="third-ul">
-                        <a href="#">
+                        <a href="{{ route('panel.setting.header') }}">
                             <li class="second-li my-3">
-                                وارد شدن
+                                سربرگ سایت
                             </li>
                         </a>
                         <a href="#">

@@ -27,7 +27,6 @@ class foodController extends Controller
         Food::create([
             'name' => \request('name'),
             'price' => \request('price'),
-            'meal' => \request('meal'),
             'image' => $image,
             'description' => \request('description')
         ]);
@@ -56,7 +55,6 @@ class foodController extends Controller
         $food->update([
            'name' => \request('name'),
            'price' => \request('price'),
-           'meal' => \request('meal'),
             'image' => $image,
             'description' => \request('description')
         ]);

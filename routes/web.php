@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\foodController;
 use App\Http\Controllers\Admin\orderController;
 use App\Http\Controllers\Admin\tableController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\settingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,8 +33,18 @@ Route::prefix('panel')->name('panel.')->group(function (){
     Route::get('order/create',[orderController::class,'create'])->name('order.create');
     Route::post('order/store',[orderController::class,'store'])->name('order.store');
 
+    //Setting Routes
+    Route::get('setting/header',[settingController::class,'header'])->name('setting.header');
+
 });
+
+
 
 //Client Routes
 Route::get('/', [homeController::class,'index'])->name('home');
 Route::get('/order', [homeController::class,'order'])->name('order');
+
+Route::get('ajax/get/food',function (){
+    $food = \App\Models\Food::query()->get(['id','name']);
+    return response()->json($food,200);
+});

@@ -19,7 +19,6 @@ class CreateFoodTable extends Migration
             $table->text('description');
             $table->string('price');
             $table->string('image');
-            $table->enum('meal',['dinner','lunch']);
             $table->timestamps();
         });
     }

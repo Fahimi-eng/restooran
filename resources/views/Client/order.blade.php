@@ -1,25 +1,82 @@
 @extends('Client.Layout.master')
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".example1").pDatepicker({
+                format: 'dddd,D,MMMM'
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+                lunchTime = document.getElementById("lunch-time")
+                dinnerTime = document.getElementById("dinner-time")
+                selectBox = document.getElementById("selectbox")
+                selectBox.addEventListener("change",function(e){
+                if(this.value == "dinner"){
+                lunchTime.classList.add("d-none")
+                dinnerTime.classList.remove("d-none")
+                }
+                if(this.value == "lunch"){
+                dinnerTime.classList.add("d-none")
+                unchTime.classList.remove("d-none")
+                }
+                })
+    </script>
+
+
+
+
+
+
+        <script type="text/javascript">
+        function selectePerson(selected){
+            $.ajax({
+                url: 'http://127.0.0.1:8000/ajax/get/food',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    let select = `<select name="foods" id="" class="form-select form-control" aria-label="Default select example">`;
+                    data.forEach((item) => {
+                        select += `<option value='${item.id}'>${item.name}</option>`;
+                    })
+                    select += `</select>`;
+                    const foodPerson = document.querySelector('#foodPerson');
+                    let foods = ``;
+                    for(let i=0; i < selected.value; i++){
+                    foods += `<div class="mt-3 mt-md-4 mx-md-2">
+                        <label for="" class="text-dark">انتخاب غذای فرد <span> ${1+i} </span></label>` +
+                         select +
+                        `</div>`;
+                    }
+                    foodPerson.innerHTML = foods;
+                }
+            })
+        }
+    </script>
+@endpush
+@push('links')
+    <link rel="stylesheet" href="/Client/css/persian-datepicker.min.css">
+    <script src="/Client/js/persian-date.min.js"></script>
+    <script src="/Client/js/persian-datepicker.min.js"></script>
+@endpush
+
+
 @section('content')
     <!-- start form -->
     <form id="regForm" action="" class="border border-3 rounded-3">
-
         <h1 class="mb-5">سفارش و رزرو</h1>
-
         <!-- One "tab" for each step in the form: -->
         <div class="tab mb-2 text-danger">
             <label for="name"><span class="fs-6">نام :</span></label>
             <p><input name="name" class="rounded-3" placeholder="نام خود را وارد کنید..." oninput="this.className = ''"></p>
-
             <label for="phone"><span class="fs-6">تلفن :</span></label>
             <p><input name="phone" class="rounded-3" placeholder="شماره موبایل..." oninput="this.className = ''"></p>
-
-
             <div class="d-flex flex-column flex-md-row justify-content-between">
                 <div>
                     <label for="date"><span class="fs-6">تاریخ :</span></label>
                     <input name="date" placeholder="تاریخ رزرو..." oninput="this.className = ''" class="rounded-3 example1" type="text" />
                 </div>
-
                 <div class="d-flex justify-content-between">
                     <div class="ms-2">
                         <label for="meal">وعده:</label>
@@ -28,7 +85,6 @@
                             <option value="dinner">شام</option>
                         </select>
                     </div>
-
                     <div id="lunch-time">
                         <label for="time"><span class="fs-6">ساعت :</span></label>
                         <select name="time" id="time" class="form-select form-control" aria-label="Default select example">
@@ -40,7 +96,6 @@
                             <option value="13:30">13:30</option>
                         </select>
                     </div>
-
                     <div id="dinner-time" class="d-none">
                         <label for="time">ساعت</label>
                         <select name="time" id="time" class="form-select form-control" aria-label="Default select example">
@@ -53,67 +108,44 @@
                         </select>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-
         <div class="tab">
             <div>
                 <label for="guest"><span class="fs-6 text-danger">تعداد افراد :</span></label>
-                <p><input type="number" min="0" max="10" name="guest" class="rounded-3" placeholder="تعداد ..." oninput="this.className = ''"></p>
+                <p><input onchange='selectePerson(this)' type="number" min="0" max="10" name="guest" class="rounded-3" placeholder="تعداد ..." oninput="this.className = ''"></p>
             </div>
             <div>
                 <label for="table" class="text-danger">انتخاب میز</label>
-                <select name="table" id="table" class="form-select form-control" aria-label="Default select example">
+
+                <select  name="table" id="table" class="form-select form-control" aria-label="Default select example" >
                     <option value="11:00"><span>میز شماره 1</span>-<span>2 نفره</span></option>
                     <option value="11:00"><span>میز شماره 2</span>-<span>4 نفره</span></option>
                     <option value="11:00"><span>میز شماره 3</span>-<span>1 نفره</span></option>
                 </select>
             </div>
+            <div id='foodPerson' class="d-flex flex-wrap flex-column flex-md-row py-3 justify-content-between flex-wrap">
 
-            <div class="d-flex flex-column flex-md-row py-3 justify-content-between flex-wrap">
-                <div class="mt-3 mt-md-0">
+                <div class=" mt-3 mt-md-2">
                     <label for="" class="text-dark">انتخاب غذای فرد <span>1</span></label>
-                    <select name="food1" id="" class="form-select form-control" aria-label="Default select example">
-                        <option value="11:00"><span>قورمه سبزی</span></option>
-                        <option value="11:00"><span>قورمه سبزی</span></option>
-                        <option value="11:00"><span>قورمه سبزی</span></option>
-                    </select>
-                </div>
-                <div class="mt-3 mt-md-0">
-                    <label for="" class="text-dark">انتخاب غذای فرد <span>2</span> </label>
-                    <select name="food2" id="" class="form-select form-control" aria-label="Default select example">
-                        <option value="11:00"><span>قورمه سبزی</span></option>
-                        <option value="11:00"><span>قورمه سبزی</span></option>
-                        <option value="11:00"><span>قورمه سبزی</span></option>
-                    </select>
-                </div>
-                <div class="mt-3 mt-md-0">
-                    <label for="" class="text-dark">انتخاب غذای فرد <span>3</span></label>
                     <select name="food3" id="" class="form-select form-control" aria-label="Default select example">
-                        <option value="11:00"><span>قورمه سبزی</span></option>
-                        <option value="11:00"><span>قورمه سبزی</span></option>
-                        <option value="11:00"><span> سبزی پلو با ماهی</span></option>
+                        <option><span>تعداد افراد را مشخص نمایید</span></option>
                     </select>
                 </div>
+
             </div>
         </div>
-
         <div class="mt-5" style="overflow:auto;">
             <div style="float:right;">
                 <button class="btn btn-outline-danger" type="button" id="prevBtn" onclick="nextPrev(-1)">قبلی</button>
                 <button class="btn btn-danger" type="button" id="nextBtn" onclick="nextPrev(1)">بعدی</button>
             </div>
         </div>
-
         <!-- Circles which indicates the steps of the form: -->
         <div style="text-align:center;margin-top:40px;">
             <span class="step"></span>
             <span class="step"></span>
         </div>
-
     </form>
     <!-- end form -->
 @endsection

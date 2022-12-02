@@ -50,24 +50,26 @@
             <h4>وعده های روزانه</h4>
             <div class="w-100 card-holder mt-3 mt-md-0 d-flex flex-column justify-content-center align-items-center flex-md-row align-items-md-center justify-content-md-around">
                 <div class="card text-center text-md-end w-100 border-0" >
-                    <img src="/Client/images/food2.png" class="card-img-top " alt="food">
+                    <img style="max-width: 180px;" src="/Client/images/f2.jpg" class="card-img-top " alt="food">
                     <div class="card-body">
                         <h5 class="card-title">نهار</h5>
                         <p class="card-text">برای شرایط فعلی تکنولوژی مورد نیاز</p>
                     </div>
                 </div>
                 <div class="card text-center text-md-end mt-3 mt-md-0 w-100 border-0" >
-                    <img src="/Client/images/food2.png" class="card-img-top" alt="food">
+                    <img style="max-width: 180px;" src="/Client/images/f2.jpg" class="card-img-top" alt="food">
                     <div class="card-body">
                         <h5 class="card-title">شام</h5>
                         <p class="card-text">برای شرایط فعلی تکنولوژی مورد نیاز</p>
                     </div>
                 </div>
             </div>
-    </section>
+        </div>
+     </section>
     <!-- end about us -->
 
     <!-- start menu -->
+    @if(count($foods) > 0)
     <section class="menu mt-5" id="menu">
 
         <div class="header text-center">
@@ -76,116 +78,38 @@
                             </span>
             <h2>منوی ما</h2>
         </div>
-
         <div class="list mt-4 d-sm-flex justify-content-sm-evenly">
-
             <ul class="list-group list-group-flush ">
-                <li class=" list-group-item d-flex justify-content-between align-items-center">
-                    <div class="ms-md-5 d-flex align-items-center">
-                        <img class="rounded-circle" style="width: 100px" src="/Client/images/fodd3.jpg" alt="">
-                        <div class="me-2">
-                            <span class="d-block">قیمه</span>
-                            <span class="d-block">چلو برنج + خورشت</span>
+                @for($i=0 ; $i <= count($foods)/2 ; $i++)
+                    <li class=" list-group-item d-flex justify-content-between align-items-center">
+                        <div class="ms-md-5 d-flex align-items-center">
+                            <img class="rounded-circle" style="width: 100px" src="{{ str_replace('public','/storage',$foods[$i]->image) }}" alt="">
+                            <div class="me-2">
+                                <span class="d-block">{{ $foods[$i]->name }}</span>
+                                <span class="d-block">{{ $foods[$i]->description }}</span>
+                            </div>
                         </div>
-                    </div>
-                    <p class="me-md-5 text-danger">$ 120</p>
-                </li>
-                <li class=" list-group-item d-flex justify-content-between align-items-center">
-                    <div class="ms-md-5 d-flex align-items-center">
-                        <img class="rounded-circle" style="width: 100px" src="/Client/images/fodd3.jpg" alt="">
-                        <div class="me-2">
-                            <span class="d-block">قیمه</span>
-                            <span class="d-block">چلو برنج + خورشت</span>
-                        </div>
-                    </div>
-                    <p class="me-md-5 text-danger">$ 120</p>
-                </li>
-                <li class=" list-group-item d-flex justify-content-between align-items-center">
-                    <div class="ms-md-5 d-flex align-items-center">
-                        <img class="rounded-circle" style="width: 100px" src="/Client/images/fodd3.jpg" alt="">
-                        <div class="me-2">
-                            <span class="d-block">قیمه</span>
-                            <span class="d-block">چلو برنج + خورشت</span>
-                        </div>
-                    </div>
-                    <p class="me-md-5 text-danger">$ 120</p>
-                </li>
-                <li class=" list-group-item d-flex justify-content-between align-items-center">
-                    <div class="ms-md-5 d-flex align-items-center">
-                        <img class="rounded-circle" style="width: 100px" src="/Client/images/fodd3.jpg" alt="">
-                        <div class="me-2">
-                            <span class="d-block">قیمه</span>
-                            <span class="d-block">چلو برنج + خورشت</span>
-                        </div>
-                    </div>
-                    <p class="me-md-5 text-danger">$ 120</p>
-                </li>
-                <li class=" list-group-item d-flex justify-content-between align-items-center">
-                    <div class="ms-md-5 d-flex align-items-center">
-                        <img class="rounded-circle" style="width: 100px" src="/Client/images/fodd3.jpg" alt="">
-                        <div class="me-2">
-                            <span class="d-block">قیمه</span>
-                            <span class="d-block">چلو برنج + خورشت</span>
-                        </div>
-                    </div>
-                    <p class="me-md-5 text-danger">$ 120</p>
-                </li>
+                        <p class="me-md-5 text-danger">$ {{ $foods[$i]->price }}</p>
+                    </li>
+                @endfor
             </ul>
-
             <ul class="list-group list-group-flush">
-                <li class=" list-group-item d-flex justify-content-between align-items-center">
-                    <div class="ms-md-5 d-flex align-items-center">
-                        <img class="rounded-circle" style="width: 100px" src="/Client/images/fodd3.jpg" alt="">
-                        <div class="me-2">
-                            <span class="d-block">قیمه</span>
-                            <span class="d-block">چلو برنج + خورشت</span>
+                @for($i=(count($foods)/2)+1 ; $i <= count($foods) ; $i++)
+                    <li class=" list-group-item d-flex justify-content-between align-items-center">
+                        <div class="ms-md-5 d-flex align-items-center">
+                            <img class="rounded-circle" style="width: 100px" src="{{ str_replace('public','/storage',$foods[$i]->image) }}" alt="">
+                            <div class="me-2">
+                                <span class="d-block">{{ $foods[$i]->name }}</span>
+                                <span class="d-block">{{ $foods[$i]->description }}</span>
+                            </div>
                         </div>
-                    </div>
-                    <p class="me-md-5 text-danger">$ 120</p>
-                </li>
-                <li class=" list-group-item d-flex justify-content-between align-items-center">
-                    <div class="ms-md-5 d-flex align-items-center">
-                        <img class="rounded-circle" style="width: 100px" src="/Client/images/fodd3.jpg" alt="">
-                        <div class="me-2">
-                            <span class="d-block">قیمه</span>
-                            <span class="d-block">چلو برنج + خورشت</span>
-                        </div>
-                    </div>
-                    <p class="me-md-5 text-danger">$ 120</p>
-                </li>
-                <li class=" list-group-item d-flex justify-content-between align-items-center">
-                    <div class="ms-md-5 d-flex align-items-center">
-                        <img class="rounded-circle" style="width: 100px" src="/Client/images/fodd3.jpg" alt="">
-                        <div class="me-2">
-                            <span class="d-block">قیمه</span>
-                            <span class="d-block">چلو برنج + خورشت</span>
-                        </div>
-                    </div>
-                    <p class="me-md-5 text-danger">$ 120</p>
-                </li>
-                <li class=" list-group-item d-flex justify-content-between align-items-center">
-                    <div class="ms-md-5 d-flex align-items-center">
-                        <img class="rounded-circle" style="width: 100px" src="/Client/images/fodd3.jpg" alt="">
-                        <div class="me-2">
-                            <span class="d-block">قیمه</span>
-                            <span class="d-block">چلو برنج + خورشت</span>
-                        </div>
-                    </div>
-                    <p class="me-md-5 text-danger">$ 120</p>
-                </li>
-                <li class=" list-group-item d-flex justify-content-between align-items-center">
-                    <div class="ms-md-5 d-flex align-items-center">
-                        <img class="rounded-circle" style="width: 100px" src="/Client/images/fodd3.jpg" alt="">
-                        <div class="me-2">
-                            <span class="d-block">قیمه</span>
-                            <span class="d-block">چلو برنج + خورشت</span>
-                        </div>
-                    </div>
-                    <p class="me-md-5 text-danger">$ 120</p>
-                </li>
+                        <p class="me-md-5 text-danger">$ {{ $foods[$i]->price }}</p>
+                    </li>
+                @endfor
             </ul>
         </div>
     </section>
+    @endif
     <!-- end menu -->
 
 @endsection
