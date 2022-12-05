@@ -23,20 +23,14 @@
                 }
                 })
     </script>
-
-
-
-
-
-
-        <script type="text/javascript">
+    <script type="text/javascript">
         function selectePerson(selected){
             $.ajax({
                 url: 'http://127.0.0.1:8000/ajax/get/food',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data){
-                    let select = `<select name="foods" id="" class="form-select form-control" aria-label="Default select example">`;
+                    let select = `<select name="foods[]" id="" class="form-select form-control" aria-label="Default select example">`;
                     data.forEach((item) => {
                         select += `<option value='${item.id}'>${item.name}</option>`;
                     })
@@ -64,7 +58,9 @@
 
 @section('content')
     <!-- start form -->
-    <form id="regForm" action="" class="border border-3 rounded-3">
+    <form id="regForm" action="{{ route('order.submit') }}" method="post" class="border border-3 rounded-3">
+        @csrf
+        @method('POST')
         <h1 class="mb-5">سفارش و رزرو</h1>
         <!-- One "tab" for each step in the form: -->
         <div class="tab mb-2 text-danger">
@@ -99,12 +95,12 @@
                     <div id="dinner-time" class="d-none">
                         <label for="time">ساعت</label>
                         <select name="time" id="time" class="form-select form-control" aria-label="Default select example">
-                            <option value="11:00">19:00</option>
+                            <option value="19:00">19:00</option>
                             <option value="11:30">19:30</option>
-                            <option value="12:00">20:00</option>
-                            <option value="12:30">20:30</option>
-                            <option value="13:00">21:00</option>
-                            <option value="13:30">21:30</option>
+                            <option value="19:30">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
                         </select>
                     </div>
                 </div>
@@ -113,26 +109,24 @@
         <div class="tab">
             <div>
                 <label for="guest"><span class="fs-6 text-danger">تعداد افراد :</span></label>
-                <p><input onchange='selectePerson(this)' type="number" min="0" max="10" name="guest" class="rounded-3" placeholder="تعداد ..." oninput="this.className = ''"></p>
+                <p><input name="guest" onchange='selectePerson(this)' type="number" min="1" max="10" class="rounded-3" placeholder="تعداد ..." oninput="this.className = ''"></p>
             </div>
             <div>
                 <label for="table" class="text-danger">انتخاب میز</label>
 
                 <select  name="table" id="table" class="form-select form-control" aria-label="Default select example" >
-                    <option value="11:00"><span>میز شماره 1</span>-<span>2 نفره</span></option>
-                    <option value="11:00"><span>میز شماره 2</span>-<span>4 نفره</span></option>
-                    <option value="11:00"><span>میز شماره 3</span>-<span>1 نفره</span></option>
+                    @foreach($tables as $table)
+                    <option value="{{ $table->id }}"><span>{{ $table->name }}</span>-<span>{{ $table->capacity }} نفره</span></option>
+                    @endforeach
                 </select>
             </div>
-            <div id='foodPerson' class="d-flex flex-wrap flex-column flex-md-row py-3 justify-content-between flex-wrap">
-
-                <div class=" mt-3 mt-md-2">
+            <div id='foodPerson' class="d-flex flex-wrap flex-column flex-md-row py-3 justify-content-start flex-wrap">
+                <div class="d-none mt-3 mt-md-2">
                     <label for="" class="text-dark">انتخاب غذای فرد <span>1</span></label>
                     <select name="food3" id="" class="form-select form-control" aria-label="Default select example">
                         <option><span>تعداد افراد را مشخص نمایید</span></option>
                     </select>
                 </div>
-
             </div>
         </div>
         <div class="mt-5" style="overflow:auto;">

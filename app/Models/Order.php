@@ -10,8 +10,13 @@ class Order extends Model
     use HasFactory;
     protected $guarded=[];
 
-    public function food()
+    public function foods()
     {
-        return $this->hasMany(Food::class);
+        return $this->belongsToMany(Food::class);
+    }
+
+    public function tables()
+    {
+        return $this->belongsToMany(Table::class);
     }
 }

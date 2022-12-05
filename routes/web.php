@@ -43,6 +43,8 @@ Route::prefix('panel')->name('panel.')->group(function (){
 //Client Routes
 Route::get('/', [homeController::class,'index'])->name('home');
 Route::get('/order', [homeController::class,'order'])->name('order');
+Route::post('/order/submit', [homeController::class,'submit'])->name('order.submit');
+
 
 Route::get('ajax/get/food',function (){
     $food = \App\Models\Food::query()->get(['id','name']);
