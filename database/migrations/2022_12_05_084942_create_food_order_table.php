@@ -17,7 +17,7 @@ class CreateFoodOrderTable extends Migration
             $table->foreignId('food_id')->constrained();
             $table->foreignId('order_id')->constrained();
             $table->primary(['food_id','order_id']);
-            $table->integer('count');
+            $table->string('count');
         });
     }
 

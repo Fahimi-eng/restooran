@@ -57,6 +57,7 @@
 
 
 @section('content')
+
     <!-- start form -->
     <form id="regForm" action="{{ route('order.submit') }}" method="post" class="border border-3 rounded-3">
         @csrf
@@ -96,8 +97,8 @@
                         <label for="time">ساعت</label>
                         <select name="time" id="time" class="form-select form-control" aria-label="Default select example">
                             <option value="19:00">19:00</option>
-                            <option value="11:30">19:30</option>
-                            <option value="19:30">20:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
                             <option value="20:30">20:30</option>
                             <option value="21:00">21:00</option>
                             <option value="21:30">21:30</option>

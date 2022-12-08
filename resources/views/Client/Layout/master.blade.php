@@ -52,24 +52,25 @@
 
         <!-- start footer -->
         <footer class="d-flex flex-column justify-content-between mt-5  flex-md-row pt-md-5">
-
+            @php
+            $settings = \App\Models\Setting::query()->first()
+            @endphp
             <div>
                 <div style="width: 100px;" class="mx-auto mx-md-0">
                     <img class="w-100 " src="/Client/images/logo.png" alt="logo">
                 </div>
                 <p class="text-wrap mx-auto mx-md-0 w-75 mt-3 text-center text-md-end">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و ب
-                    ا استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                    {{ $settings->footer_body }}
                 </p>
                 <div class="d-flex justify-content-center justify-content-md-start">
                     <div>
-                        <a class="text-dark " href="#"> <i class="s-hover fa-brands fa-instagram"></i></a>
+                        <a class="text-dark " href="{{ $settings->instagram }}"> <i class="s-hover fa-brands fa-instagram"></i></a>
                     </div>
                     <div>
-                        <a class="text-dark" href="#"><i class="s-hover fa-brands fa-facebook-f mx-5"></i></a>
+                        <a class="text-dark" target="_blank" href="{{ $settings->facebook }}"><i class="s-hover fa-brands fa-facebook-f mx-5"></i></a>
                     </div>
                     <div>
-                        <a class="text-dark" href="#"><i class="s-hover fa-brands fa-twitter"></i></a>
+                        <a class="text-dark" href="{{ $settings->twitter }}"><i class="s-hover fa-brands fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -85,15 +86,13 @@
             <div>
                 <h5 class="mt-4 mt-md-0 text-center text-md-end">تماس با ما</h5>
                 <p class="text-center">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                    {{ $settings->contact }}
                 </p>
                 <ul class="list-group text-center text-md-end">
-                    <li class="list-group-item border-0"><span class="text-danger">شماره تماس :</span> 33390962-021</li>
-                    <li class="list-group-item border-0"><span class="text-danger">آدرس:</span> <span>تهران، شهر ری، دولت آباد</span></li>
+                    <li class="list-group-item border-0"><span class="text-danger">شماره تماس :</span>{{ $settings->telephone }}</li>
+                    <li class="list-group-item border-0"><span class="text-danger">آدرس:</span> <span>{{ $settings->address }}</span></li>
                 </ul>
             </div>
-
-
         </footer>
         <!-- end footer -->
 

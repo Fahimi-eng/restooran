@@ -17,12 +17,12 @@
                                 لیست سفارشات
                             </li>
                         </a>
-                        <a href="{{ route('panel.order.create') }}">
-                            <li class="second-li my-3 ">
-                                <i class="fa-solid fa-plus"></i>
-                                ثبت سفارش
-                            </li>
-                        </a>
+{{--                        <a href="{{ route('panel.order.create') }}">--}}
+{{--                            <li class="second-li my-3 ">--}}
+{{--                                <i class="fa-solid fa-plus"></i>--}}
+{{--                                ثبت سفارش--}}
+{{--                            </li>--}}
+{{--                        </a>--}}
                     </ul>
                 </li>
                 <li class="first-li second">
@@ -61,9 +61,9 @@
                     <span>تنظیمات</span>
                     <i class="fa-solid fa-angle-down"></i>
                     <ul class="third-ul">
-                        <a href="{{ route('panel.setting.header') }}">
+                        <a href="{{ route('panel.setting.edit') }}">
                             <li class="second-li my-3">
-                                سربرگ سایت
+                                تنظیمات
                             </li>
                         </a>
                         <a href="#">

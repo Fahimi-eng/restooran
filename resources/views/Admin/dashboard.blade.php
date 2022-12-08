@@ -15,16 +15,20 @@
             <th scope="col">جزئیات</th>
         </tr>
         </thead>
+
         <tbody>
+        @foreach($orders as $key=>$order)
         <tr>
-            <th scope="row">1</th>
-            <td>علیرضا فهیمی</td>
-            <td>4</td>
-            <td>1</td>
-            <td>14 : 30</td>
-            <td>2 آذر</td>
-            <td><a href="#"><i class="fa fa-eye" style="font-size: 20px"></i></a></td>
+            <th scope="row">{{ $key }}</th>
+            <td>{{ $order->customer }}</td>
+            <td>{{ $order->guests }}</td>
+            <td>{{ $order->tables[$key]->name }}</td>
+            <td>{{ $order->time }}</td>
+            <td>{{ $order->date }}</td>
+{{--            <td>{{ $order->pivot->counts }}</td>--}}
+            <td><a href="{{ route('panel.order.show',$order->id) }}"><i class="fa fa-eye" style="font-size: 20px"></i></a></td>
         </tr>
+        @endforeach
         </tbody>
     </table>
 @endsection

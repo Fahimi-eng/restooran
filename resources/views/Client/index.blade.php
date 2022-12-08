@@ -6,9 +6,9 @@
             <img class="border-10  w-100" src="/Client/images/hero-1.jpg" alt="">
         </div>
         <div class="slogan-holder d-flex mt-4 mt-md-0 flex-column justify-content-around align-items-start">
-            <h2>عاشق غذاهای خوشمزه</h2>
+            <h2>{{ $settings->header_title }}</h2>
             <p class="w-100 text-end word-wrap fs-5">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                {{ $settings->header_body }}
                 <br>
                 <br>
                 <a class="btn my-outline-primary-btn mx-2 " href="{{ route('order') }}"><i class="fa-solid fa-rocket px-2 fs-5 text-end"></i>سفارش </a>
@@ -40,12 +40,10 @@
         <div class="slogan-holder me-4 d-flex mt-4 mt-md-0 flex-column justify-content-around align-items-start">
             <div class="title mt-3">
                 <span class="text-danger">درباره ما</span>
-                <h3>به رستوران ما خوش آمدید</h3>
+                <h3>{{ $settings->about_title }}</h3>
             </div>
             <p class="mt-md-4">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-                و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                {{ $settings->about_body }}
             </p>
             <h4>وعده های روزانه</h4>
             <div class="w-100 card-holder mt-3 mt-md-0 d-flex flex-column justify-content-center align-items-center flex-md-row align-items-md-center justify-content-md-around">
@@ -53,14 +51,14 @@
                     <img style="max-width: 180px;" src="/Client/images/f2.jpg" class="card-img-top " alt="food">
                     <div class="card-body">
                         <h5 class="card-title">نهار</h5>
-                        <p class="card-text">برای شرایط فعلی تکنولوژی مورد نیاز</p>
+                        <p class="card-text">{{ $settings->about_lunch }}</p>
                     </div>
                 </div>
                 <div class="card text-center text-md-end mt-3 mt-md-0 w-100 border-0" >
                     <img style="max-width: 180px;" src="/Client/images/f2.jpg" class="card-img-top" alt="food">
                     <div class="card-body">
                         <h5 class="card-title">شام</h5>
-                        <p class="card-text">برای شرایط فعلی تکنولوژی مورد نیاز</p>
+                        <p class="card-text">{{ $settings->about_dinner }}</p>
                     </div>
                 </div>
             </div>

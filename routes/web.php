@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Route;
 //Panel Routes
 
 Route::prefix('panel')->name('panel.')->group(function (){
+
+    //Order Routes
     Route::get('/', [orderController::class,'index'])->name('dashboard');
+    Route::get('order/show/{id}',[orderController::class,'show'])->name('order.show');
 
     //Table Routes
     Route::get('tables',[tableController::class,'index'])->name('tables');
@@ -29,22 +32,16 @@ Route::prefix('panel')->name('panel.')->group(function (){
     Route::put('food/update/{food}',[foodController::class,'update'])->name('food.update');
     Route::delete('food/destroy/{food}',[foodController::class,'destroy'])->name('food.destroy');
 
-    //Order Routes
-    Route::get('order/create',[orderController::class,'create'])->name('order.create');
-    Route::post('order/store',[orderController::class,'store'])->name('order.store');
-
     //Setting Routes
-    Route::get('setting/header',[settingController::class,'header'])->name('setting.header');
+    Route::get('setting/edit',[settingController::class,'edit'])->name('setting.edit');
+    Route::post('setting/update/{setting}',[settingController::class,'update'])->name('setting.update');
 
 });
-
-
 
 //Client Routes
 Route::get('/', [homeController::class,'index'])->name('home');
 Route::get('/order', [homeController::class,'order'])->name('order');
 Route::post('/order/submit', [homeController::class,'submit'])->name('order.submit');
-
 
 Route::get('ajax/get/food',function (){
     $food = \App\Models\Food::query()->get(['id','name']);
