@@ -47,3 +47,13 @@ Route::get('ajax/get/food',function (){
     $food = \App\Models\Food::query()->get(['id','name']);
     return response()->json($food,200);
 });
+
+Route::post('ajax/order/checkDate',function (\Illuminate\Http\Request $request){
+
+
+    $dates = explode(',',$request->get('date'));
+    $date = \Morilog\Jalali\CalendarUtils::toGregorian($dates[0], $dates[1], $dates[2]);
+    $date = implode('-',$date);
+    $isExists = \App\Models\Order::query()->where('date',$date)->where('time',$request->get('time'))->exists();
+    return response()->json(['reserved' => $isExists],200);
+});

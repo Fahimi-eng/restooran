@@ -4,6 +4,7 @@
         $(document).ready(function() {
             $(".example1").pDatepicker({
                 format: 'YYYY,MM,DD',
+                initialValue: false,
                 formatter: function (unixDate){
                     var self = this;
                     var pdate = new persianDate(unixDate);
@@ -12,6 +13,27 @@
                 }
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        function checkDate(){
+            const dateInput = document.querySelector('#date');
+            const timeInput = document.querySelector('#time');
+            let date = dateInput.value;
+            let time = timeInput.value;
+            $.ajax({
+                url:'/ajax/order/checkDate',
+                type:'POST',
+                data:{
+                    _token: '{{ csrf_token() }}',
+                    date: date,
+                    time: time
+                },
+                success:function (data){
+                    console.log(data)
+                }
+            })
+        }
     </script>
 
     <script type="text/javascript">
@@ -78,7 +100,8 @@
             <div class="d-flex flex-column flex-md-row justify-content-between">
                 <div>
                     <label for="date"><span class="fs-6">تاریخ :</span></label>
-                    <input name="date" placeholder="تاریخ رزرو..." oninput="this.className = ''" class="rounded-3 example1" type="text" />
+                    <input id="date" name="date" placeholder="تاریخ رزرو..." oninput="this.className = ''" class="rounded-3 example1" type="text" />
+                    <button onclick="checkDate()" type="button">check</button>
                 </div>
                 <div class="d-flex justify-content-between">
                     <div class="ms-2">
