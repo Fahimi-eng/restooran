@@ -8,6 +8,7 @@ use App\Models\Setting;
 use App\Models\Table;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Morilog\Jalali\CalendarUtils;
 
 class homeController extends Controller
 {
@@ -63,14 +64,17 @@ class homeController extends Controller
         $bill = 0;
         for ($i=0 ; $i < count($food) ; $i++)
         {
-            $cost = Food::query()->find($food[$i])->select('price')->get();
-            $bill += ($cost*$counts[$i]);
+            $cost = Food::query()->where('id', $food[$i])->first();
+            $bill += ($cost->price*$counts[$i]);
         }
 
+        $dates = explode(',', \request('date'));
+        $date = CalendarUtils::toGregorian($dates[0], $dates[1], $dates[2]);
+        $date = implode('-',$date);
         $order = Order::create([
            'customer' => \request('name'),
            'phone' => \request('phone'),
-           'date' => \request('date'),
+           'date' => $date,
            'meal' => \request('meal'),
            'time' => \request('time'),
            'guests' => \request('guest'),

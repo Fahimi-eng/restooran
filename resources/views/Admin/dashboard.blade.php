@@ -22,9 +22,13 @@
             <th scope="row">{{ $key }}</th>
             <td>{{ $order->customer }}</td>
             <td>{{ $order->guests }}</td>
-            <td>{{ $order->tables[$key]->name }}</td>
+            <td>{{ $order->tables[0]->name }}</td>
             <td>{{ $order->time }}</td>
-            <td>{{ $order->date }}</td>
+            @php
+                $date = new \Carbon\Carbon($order->date);
+                $date = \Morilog\Jalali\CalendarUtils::tojalali($date->year, $date->month, $date->day);
+            @endphp
+            <td>{{ implode('/',$date) }}</td>
 {{--            <td>{{ $order->pivot->counts }}</td>--}}
             <td><a href="{{ route('panel.order.show',$order->id) }}"><i class="fa fa-eye" style="font-size: 20px"></i></a></td>
         </tr>

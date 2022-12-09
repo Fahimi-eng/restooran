@@ -3,7 +3,13 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $(".example1").pDatepicker({
-                format: 'dddd,D,MMMM'
+                format: 'YYYY,MM,DD',
+                formatter: function (unixDate){
+                    var self = this;
+                    var pdate = new persianDate(unixDate);
+                    pdate.formatPersian = false;
+                    return pdate.format(self.format);
+                }
             });
         });
     </script>

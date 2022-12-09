@@ -11,6 +11,8 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "morilog/jalali": "3.*",
+        "nesbot/carbon": "^2.64",
         "shetabit/payment": "^4.3"
     },
     "require-dev": {
