@@ -16,11 +16,28 @@
     </script>
 
     <script type="text/javascript">
+        let select_lunch = document.getElementById("time1");
+        let select_dinner = document.getElementById("time2");
+    </script>
+
+    <script type="text/javascript">
         function checkDate(){
             const dateInput = document.querySelector('#date');
-            const timeInput = document.querySelector('#time');
+            let time='';
+            let class_name = '';
+            let dd = document.getElementById('lunch-time').classList;
+            dd.forEach((item)=>{
+                class_name = item;
+            })
+            if(class_name == '')
+            {
+                 time = document.querySelector('#time1').selectedOptions[0].value;
+            }
+            else {
+                 time = document.querySelector('#time2').selectedOptions[0].value;
+            }
+            console.log('this is time ->',time);
             let date = dateInput.value;
-            let time = timeInput.value;
             $.ajax({
                 url:'/ajax/order/checkDate',
                 type:'POST',
@@ -35,7 +52,6 @@
             })
         }
     </script>
-
     <script type="text/javascript">
                 lunchTime = document.getElementById("lunch-time")
                 dinnerTime = document.getElementById("dinner-time")
@@ -47,7 +63,7 @@
                 }
                 if(this.value == "lunch"){
                 dinnerTime.classList.add("d-none")
-                unchTime.classList.remove("d-none")
+                lunchTime.classList.remove("d-none")
                 }
                 })
     </script>
@@ -97,11 +113,14 @@
             <p><input name="name" class="rounded-3" placeholder="نام خود را وارد کنید..." oninput="this.className = ''"></p>
             <label for="phone"><span class="fs-6">تلفن :</span></label>
             <p><input name="phone" class="rounded-3" placeholder="شماره موبایل..." oninput="this.className = ''"></p>
+            <div>
+                <label for="guest"><span class="fs-6 text-danger">تعداد افراد :</span></label>
+                <p><input name="guest" onchange='selectePerson(this)' type="number" min="1" max="10" class="rounded-3" placeholder="تعداد ..." oninput="this.className = ''"></p>
+            </div>
             <div class="d-flex flex-column flex-md-row justify-content-between">
                 <div>
                     <label for="date"><span class="fs-6">تاریخ :</span></label>
-                    <input id="date" name="date" placeholder="تاریخ رزرو..." oninput="this.className = ''" class="rounded-3 example1" type="text" />
-                    <button onclick="checkDate()" type="button">check</button>
+                        <input id="date" name="date" placeholder="تاریخ رزرو..." oninput="this.className = ''" class="rounded-3 example1" type="text" />
                 </div>
                 <div class="d-flex justify-content-between">
                     <div class="ms-2">
@@ -113,7 +132,7 @@
                     </div>
                     <div id="lunch-time">
                         <label for="time"><span class="fs-6">ساعت :</span></label>
-                        <select name="time" id="time" class="form-select form-control" aria-label="Default select example">
+                        <select name="time" id="time1" class="form-select form-control" aria-label="Default select example">
                             <option value="11:00">11:00</option>
                             <option value="11:30">11:30</option>
                             <option value="12:00">12:00</option>
@@ -124,7 +143,7 @@
                     </div>
                     <div id="dinner-time" class="d-none">
                         <label for="time">ساعت</label>
-                        <select name="time" id="time" class="form-select form-control" aria-label="Default select example">
+                        <select name="time" id="time2" class="form-select form-control" aria-label="Default select example">
                             <option value="19:00">19:00</option>
                             <option value="19:30">19:30</option>
                             <option value="20:00">20:00</option>
@@ -134,19 +153,16 @@
                         </select>
                     </div>
                 </div>
+                <div class="text-center">
+                    <button class="mt-4 btn btn-danger my-auto" onclick="checkDate()" type="button">بررسی تاریخ رزرو</button>
+                </div>
             </div>
-        </div>
-        <div class="tab">
-            <div>
-                <label for="guest"><span class="fs-6 text-danger">تعداد افراد :</span></label>
-                <p><input name="guest" onchange='selectePerson(this)' type="number" min="1" max="10" class="rounded-3" placeholder="تعداد ..." oninput="this.className = ''"></p>
-            </div>
-            <div>
-                <label for="table" class="text-danger">انتخاب میز</label>
 
+            <div>
+                <label for="table" class="text-danger mt-3">انتخاب میز</label>
                 <select  name="table" id="table" class="form-select form-control" aria-label="Default select example" >
                     @foreach($tables as $table)
-                    <option value="{{ $table->id }}"><span>{{ $table->name }}</span>-<span>{{ $table->capacity }} نفره</span></option>
+                        <option value="{{ $table->id }}"><span>{{ $table->name }}</span>-<span>{{ $table->capacity }} نفره</span></option>
                     @endforeach
                 </select>
             </div>
@@ -158,6 +174,9 @@
                     </select>
                 </div>
             </div>
+        </div>
+        <div class="tab">
+            hello babe
         </div>
         <div class="mt-5" style="overflow:auto;">
             <div style="float:right;">

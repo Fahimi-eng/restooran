@@ -52,5 +52,11 @@
         @endforeach
     </div>
 
+    <div class="m-5 pt-3 d-flex justify-content-around flex-wrap border border-dark">
+            <div class="mx-2 d-flex">
+                <p class="mx-2 py-2">صورتحساب</p>
+                <p class="px-3 py-2 bg-dark rounded text-light"> {{ $order->bill }} تومان</p>
+            </div>
+    </div>
 
 @endsection
