@@ -176,7 +176,7 @@
             </div>
         </div>
         <div class="tab">
-            hello babe
+            صورتحساب و پرداخت
         </div>
         <div class="mt-5" style="overflow:auto;">
             <div style="float:right;">

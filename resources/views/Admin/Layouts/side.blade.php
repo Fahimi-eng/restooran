@@ -66,16 +66,6 @@
                                 تنظیمات
                             </li>
                         </a>
-                        <a href="#">
-                            <li class="second-li my-3">
-                                فعال سازی
-                            </li>
-                        </a>
-                        <a href="#">
-                            <li class="second-li my-3">
-                                فراموشی رمز عبور
-                            </li>
-                        </a>
                     </ul>
                 </li>
             </ul>

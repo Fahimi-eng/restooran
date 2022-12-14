@@ -55,5 +55,12 @@ Route::post('ajax/order/checkDate',function (\Illuminate\Http\Request $request){
     $date = \Morilog\Jalali\CalendarUtils::toGregorian($dates[0], $dates[1], $dates[2]);
     $date = implode('-',$date);
     $isExists = \App\Models\Order::query()->where('date',$date)->where('time',$request->get('time'))->exists();
-    return response()->json(['reserved' => $isExists],200);
+    if($isExists)
+    {
+        $tables=\App\Models\Order::query()->where('date', $date)->where('time', '<>' ,$request->get('time'))->with('tables')->get();
+        return response()->json(['tables' => $tables],200);
+    }
+    else{
+        return response()->json(['reserved' => $isExists],200);
+    }
 });

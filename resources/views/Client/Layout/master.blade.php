@@ -28,8 +28,8 @@
             </div>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="nav-bar navbar-nav">
-                    <li class="nav-item ml-5">
-                        <a class="nav-link " aria-current="page" href="#">پروفایل</a>
+                    <li class="nav-item mx-5">
+                        <a class="nav-link" href="{{ route('home') }}#menu">منو</a>
                     </li>
                     <li class="nav-item mx-5">
                         <a class="nav-link " aria-current="page" href="{{ route('order') }}">رزرو</a>
@@ -37,11 +37,11 @@
                     <a href="{{ route('home') }}" class="navbar-brand mx-5">
                         <img src="/Client/images/logo.png" id="logo" width="100" class="" alt="">
                     </a>
-                    <li class="nav-item mx-5">
-                        <a class="nav-link" href="{{ route('home') }}#menu">منو</a>
-                    </li>
                     <li class="nav-item mr-5">
                         <a class="nav-link" href="{{ route('home') }}#about">درباره ما</a>
+                    </li>
+                    <li class="nav-item ml-5">
+                        <a class="nav-link " aria-current="page" href="#contact">تماس با ما</a>
                     </li>
                 </ul>
             </div>
@@ -51,7 +51,7 @@
         @yield('content')
 
         <!-- start footer -->
-        <footer class="d-flex flex-column justify-content-between mt-5  flex-md-row pt-md-5">
+        <footer id="contact" class="d-flex flex-column justify-content-between mt-5  flex-md-row pt-md-5">
             @php
             $settings = \App\Models\Setting::query()->first()
             @endphp

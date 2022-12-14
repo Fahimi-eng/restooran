@@ -78,33 +78,20 @@
         </div>
         <div class="list mt-4 d-sm-flex justify-content-sm-evenly">
             <ul class="list-group list-group-flush ">
-                @for($i=0 ; $i <= count($foods)/2 ; $i++)
+                @foreach($foods as $food)
                     <li class=" list-group-item d-flex justify-content-between align-items-center">
                         <div class="ms-md-5 d-flex align-items-center">
-                            <img class="rounded-circle" style="width: 100px" src="{{ str_replace('public','/storage',$foods[$i]->image) }}" alt="">
+                            <img class="rounded-circle" style="width: 100px" src="{{ str_replace('public','/storage',$food->image) }}" alt="">
                             <div class="me-2">
-                                <span class="d-block">{{ $foods[$i]->name }}</span>
-                                <span class="d-block">{{ $foods[$i]->description }}</span>
+                                <span class="d-block">{{ $food->name }}</span>
+                                <span class="d-block">{{ $food->description }}</span>
                             </div>
                         </div>
-                        <p class="me-md-5 text-danger">$ {{ $foods[$i]->price }}</p>
+                        <p class="me-md-5 text-danger">$ {{ $food->price }}</p>
                     </li>
-                @endfor
+                @endforeach
             </ul>
-            <ul class="list-group list-group-flush">
-                @for($i=(count($foods)/2)+1 ; $i <= count($foods) ; $i++)
-                    <li class=" list-group-item d-flex justify-content-between align-items-center">
-                        <div class="ms-md-5 d-flex align-items-center">
-                            <img class="rounded-circle" style="width: 100px" src="{{ str_replace('public','/storage',$foods[$i]->image) }}" alt="">
-                            <div class="me-2">
-                                <span class="d-block">{{ $foods[$i]->name }}</span>
-                                <span class="d-block">{{ $foods[$i]->description }}</span>
-                            </div>
-                        </div>
-                        <p class="me-md-5 text-danger">$ {{ $foods[$i]->price }}</p>
-                    </li>
-                @endfor
-            </ul>
+            
         </div>
     </section>
     @endif
