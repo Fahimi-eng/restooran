@@ -57,6 +57,28 @@
                 <p class="mx-2 py-2">صورتحساب</p>
                 <p class="px-3 py-2 bg-dark rounded text-light"> {{ $order->bill }} تومان</p>
             </div>
+        <div class="mx-2 d-flex">
+            <p class="mx-2 py-2">وضعیت پرداخت</p>
+            <p class="px-3 py-2 bg-warning rounded text-dark">
+                @php
+                    switch ($order->status )
+                    {
+                        case 'inProcess':
+                            echo 'در حال پرداخت';
+                            break;
+                        case 'done':
+                             echo 'پرداخت موفق';
+                             break;
+                        case 'failed':
+                            echo 'پرداخت ناموفق';
+                            break;
+                        default:
+                            echo 'نا معلوم';
+                            break;
+                    }
+                @endphp
+            </p>
+        </div>
     </div>
 
 @endsection

@@ -9,6 +9,10 @@ use App\Models\Table;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Morilog\Jalali\CalendarUtils;
+use Shetabit\Multipay\Invoice;
+use Shetabit\Payment\Facade\Payment;
+use Shetabit\Multipay\Exceptions\InvalidPaymentException;
+
 
 class homeController extends Controller
 {
@@ -29,13 +33,14 @@ class homeController extends Controller
 
     public function submit(Request $request)
     {
+//        check the same reserve
         $same_time = Order::query()->where('date' , \request('date'))->where('time' , \request('time'))->first();
         $same_table = Table::query()->find(\request('table'))->get();
         if ($same_table != null && $same_time != null)
         {
             return redirect()->back();
         }
-
+//        calculate the food numbers
         $foods = $request->input('foods');
         $food=array();
         for ($i=0 ; $i<count($foods) ; $i++)
@@ -60,14 +65,16 @@ class homeController extends Controller
                 }
             }
         }
-        // در این حلقه پایینی مجموع صورتحساب محاسبه میشود
+//        calculate the bill of order
         $bill = 0;
         for ($i=0 ; $i < count($food) ; $i++)
         {
             $cost = Food::query()->where('id', $food[$i])->first();
             $bill += ($cost->price*$counts[$i]);
         }
-
+//        shetabit and Payment gateway
+        $this->pay(intval($bill));
+//        convert persian date to gregorian
         $dates = explode(',', \request('date'));
         $date = CalendarUtils::toGregorian($dates[0], $dates[1], $dates[2]);
         $date = implode('-',$date);
@@ -89,5 +96,23 @@ class homeController extends Controller
         }
          $order->tables()->attach(\request('table'));
          return redirect()->route('home');
+    }
+
+    public function pay($bill){
+//        $invoice = new Invoice;
+//        // Set invoice amount.
+//        $invoice->amount($bill);
+//        $invoice->detail(['detailName' => 'your detail goes here']);
+//        Payment::purchase($invoice,function($driver, $transactionId) {
+//            // We can store $transactionId in database.
+//        })->pay()->render();
+
+        return Payment::purchase(
+            (new Invoice)->amount(1000),
+            function($driver, $transactionId) {
+                // Store transactionId in database.
+                // We need the transactionId to verify payment in the future.
+            }
+        )->pay()->render();
     }
 }

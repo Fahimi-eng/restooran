@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\foodController;
 use App\Http\Controllers\Admin\orderController;
 use App\Http\Controllers\Admin\tableController;
+use App\Http\Controllers\ajaxController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\settingController;
 use Illuminate\Support\Facades\Route;
@@ -42,25 +43,5 @@ Route::prefix('panel')->name('panel.')->group(function (){
 Route::get('/', [homeController::class,'index'])->name('home');
 Route::get('/order', [homeController::class,'order'])->name('order');
 Route::post('/order/submit', [homeController::class,'submit'])->name('order.submit');
-
-Route::get('ajax/get/food',function (){
-    $food = \App\Models\Food::query()->get(['id','name']);
-    return response()->json($food,200);
-});
-
-Route::post('ajax/order/checkDate',function (\Illuminate\Http\Request $request){
-
-
-    $dates = explode(',',$request->get('date'));
-    $date = \Morilog\Jalali\CalendarUtils::toGregorian($dates[0], $dates[1], $dates[2]);
-    $date = implode('-',$date);
-    $isExists = \App\Models\Order::query()->where('date',$date)->where('time',$request->get('time'))->exists();
-    if($isExists)
-    {
-        $tables=\App\Models\Order::query()->where('date', $date)->where('time', '<>' ,$request->get('time'))->with('tables')->get();
-        return response()->json(['tables' => $tables],200);
-    }
-    else{
-        return response()->json(['reserved' => $isExists],200);
-    }
-});
+Route::get('ajax/get/food',[ajaxController::class,'getFood']);
+Route::post('ajax/order/checkDate',[ajaxController::class,'checkDate']);

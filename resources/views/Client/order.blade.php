@@ -22,6 +22,7 @@
 
     <script type="text/javascript">
         function checkDate(){
+            console.log(321)
             const dateInput = document.querySelector('#date');
             let time='';
             let class_name = '';

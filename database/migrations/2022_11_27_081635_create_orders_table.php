@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('guests');
             $table->string('bill');
             $table->enum('status',['failed','done','inProcess'])->default('inProcess');
+            $table->string('transactionId')->default('0000');
             $table->timestamps();
         });
     }
