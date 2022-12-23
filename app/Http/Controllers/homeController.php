@@ -16,32 +16,8 @@ use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 
 class homeController extends Controller
 {
-    public function index()
+    public function get_food_types_of($foods)
     {
-        return view('Client.index',[
-            'foods' => Food::all(),
-            'settings' => Setting::query()->first()
-        ]);
-    }
-
-    public function order()
-    {
-        return view('Client.order',[
-            'tables' => Table::all()
-        ]);
-    }
-
-    public function submit(Request $request)
-    {
-//        check the same reserve
-        $same_time = Order::query()->where('date' , \request('date'))->where('time' , \request('time'))->first();
-        $same_table = Table::query()->find(\request('table'))->get();
-        if ($same_table != null && $same_time != null)
-        {
-            return redirect()->back();
-        }
-//        calculate the food numbers
-        $foods = $request->input('foods');
         $food=array();
         for ($i=0 ; $i<count($foods) ; $i++)
         {
@@ -53,27 +29,58 @@ class homeController extends Controller
                 array_push($food,$foods[$i]);
             }
         }
-        $counts=[count($food)];
-        for ($i=0; $i<count($food) ; $i++)
+        return $food;
+    }
+    public function count_numbers_of_food_from_food_types($food_type , $foods)
+    {
+        $counts=[count($food_type)];
+        for ($i=0; $i<count($food_type) ; $i++)
         {
             $counts[$i]=0;
             for ($j=0;$j<count($foods);$j++)
             {
-                if($foods[$j]==$food[$i])
+                if($foods[$j]==$food_type[$i])
                 {
                     $counts[$i] += 1;
                 }
             }
         }
+        return$counts;
+    }
+    public function index()
+    {
+        return view('Client.index',[
+            'foods' => Food::all(),
+            'settings' => Setting::query()->first()
+        ]);
+    }
+
+    public function order()
+    {
+        return view('Client.order');
+    }
+
+    public function submit(Request $request)
+    {
+//        check the same reserve
+        $same_time = Order::query()->where('date' , \request('date'))->where('time' , \request('time'))->first();
+        $same_table = Table::query()->find(\request('table'))->get();
+        if ($same_table != null && $same_time != null)
+        {
+            return redirect()->back();
+        }
+//        calculate the type and numbers of received foods
+        $foods = $request->input('foods');
+        $food_types =  $this->get_food_types_of($foods);
+        $food_count = $this->count_numbers_of_food_from_food_types($food_types,$foods);
 //        calculate the bill of order
         $bill = 0;
-        for ($i=0 ; $i < count($food) ; $i++)
+        for ($i=0 ; $i < count($food_types) ; $i++)
         {
-            $cost = Food::query()->where('id', $food[$i])->first();
-            $bill += ($cost->price*$counts[$i]);
+            $cost = Food::query()->where('id', $food_types[$i])->first();
+            $bill += ($cost->price*$food_count[$i]);
         }
 //        shetabit and Payment gateway
-        $this->pay(intval($bill));
 //        convert persian date to gregorian
         $dates = explode(',', \request('date'));
         $date = CalendarUtils::toGregorian($dates[0], $dates[1], $dates[2]);
@@ -87,32 +94,13 @@ class homeController extends Controller
            'guests' => \request('guest'),
            'bill' => $bill
         ]);
-//        $user->roles()->syncWithPivotValues([1, 2, 3], ['active' => true]);
-//        $book->authors()->sync([5, 2, 10]);
-
-        for ($i=0 ; $i < count($food) ; $i++)
+        for ($i=0 ; $i < count($food_types) ; $i++)
         {
-         $order->foods()->attach([$food[$i]],['count' => $counts[$i]]);
+         $order->foods()->attach([$food_types[$i]],['count' => $food_count[$i]]);
         }
          $order->tables()->attach(\request('table'));
-         return redirect()->route('home');
-    }
-
-    public function pay($bill){
-//        $invoice = new Invoice;
-//        // Set invoice amount.
-//        $invoice->amount($bill);
-//        $invoice->detail(['detailName' => 'your detail goes here']);
-//        Payment::purchase($invoice,function($driver, $transactionId) {
-//            // We can store $transactionId in database.
-//        })->pay()->render();
-
-        return Payment::purchase(
-            (new Invoice)->amount(1000),
-            function($driver, $transactionId) {
-                // Store transactionId in database.
-                // We need the transactionId to verify payment in the future.
-            }
-        )->pay()->render();
+         return view('Client.bill',[
+             'bill' => Order::query()->find($order)->with('foods')->get()
+         ]);
     }
 }

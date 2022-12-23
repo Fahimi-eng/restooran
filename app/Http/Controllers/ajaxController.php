@@ -30,7 +30,7 @@ class ajaxController extends Controller
 
     public function getFood()
     {
-        $food = \App\Models\Food::query()->get(['id','name']);
+        $food = \App\Models\Food::query()->get();
         return response()->json($food,200);
     }
 }

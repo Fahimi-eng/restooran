@@ -5,9 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Client/css/style.css">
+    <link rel="stylesheet" href="/Bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     @stack('links')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -19,31 +18,32 @@
 <section class="my-4 mx-4 my-white-bg border-5">
     <section class="container">
         <!-- nav -->
-        <nav class="navbar justify-content-center navbar-expand-lg navbar-light bg-light mb-5 bg-white">
+        <nav class="navbar justify-content-between navbar-expand-lg navbar-light bg-light mb-5 bg-white">
             <div class="container-fluid d-lg-none">
                 <img src="/Client/images/logo.png" id="logo" width="100" class="navbar-brand" alt="">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <div class="collapse navbar-collapse justify-content-between bb" id="navbarNav">
                 <ul class="nav-bar navbar-nav">
+                    <li class="nav-item mx-5">
+                        <a class="nav-link " aria-current="page" href="{{ route('order') }}">سفارش</a>
+                    </li>
                     <li class="nav-item mx-5">
                         <a class="nav-link" href="{{ route('home') }}#menu">منو</a>
                     </li>
                     <li class="nav-item mx-5">
-                        <a class="nav-link " aria-current="page" href="{{ route('order') }}">رزرو</a>
-                    </li>
-                    <a href="{{ route('home') }}" class="navbar-brand mx-5">
-                        <img src="/Client/images/logo.png" id="logo" width="100" class="" alt="">
-                    </a>
-                    <li class="nav-item mr-5">
                         <a class="nav-link" href="{{ route('home') }}#about">درباره ما</a>
                     </li>
-                    <li class="nav-item ml-5">
+                    <li class="nav-item mx-5">
                         <a class="nav-link " aria-current="page" href="#contact">تماس با ما</a>
                     </li>
                 </ul>
+                <a href="{{ route('home') }}" class="navbar-brand mx-5">
+                    <img src="/Client/images/logo.png" id="logo" width="100" class="" alt="">
+                    {{--                        <span>رستوران</span>--}}
+                </a>
             </div>
         </nav>
         <!-- end nav -->
@@ -108,6 +108,7 @@
 <!-- End Main Container -->
 
 <!-- scripts -->
+<script src="/Bootstrap/js/bootstrap.js"></script>
 <script src="/Client/js/js.js"></script>
 @stack('scripts')
 </body>
