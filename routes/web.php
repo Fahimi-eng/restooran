@@ -5,13 +5,14 @@ use App\Http\Controllers\Admin\orderController;
 use App\Http\Controllers\Admin\tableController;
 use App\Http\Controllers\ajaxController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\settingController;
 use Illuminate\Support\Facades\Route;
 
 
 //Panel Routes
 
-Route::prefix('panel')->name('panel.')->group(function (){
+Route::middleware('auth')->prefix('panel')->name('panel.')->group(function (){
 
     //Order Routes
     Route::get('/', [orderController::class,'index'])->name('dashboard');
@@ -45,3 +46,9 @@ Route::get('/order', [homeController::class,'order'])->name('order');
 Route::post('/order/submit', [homeController::class,'submit'])->name('order.submit');
 Route::get('ajax/get/food',[ajaxController::class,'getFood']);
 Route::post('ajax/order/checkDate',[ajaxController::class,'checkDate']);
+//login
+Route::middleware('guest')->group(function(){
+    Route::get('/login',[LoginController::class,'create'])->name('login.create');
+});
+Route::post('/login/store',[LoginController::class,'store'])->name('login.store');
+Route::middleware('auth')->delete('/logout',[LoginController::class,'destroy'])->name('login.destroy');

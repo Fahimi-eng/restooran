@@ -6,7 +6,7 @@
         @method('POST')
         <h1 class="mb-5">پرداخت</h1>
         <!-- One "tab" for each step in the form: -->
-
+        @dd($bill)
         <div style="float:right;">
             <button class="btn btn-danger" type="submit" id="nextBtn">پرداخت</button>
         </div>

@@ -17,12 +17,6 @@
                                 لیست سفارشات
                             </li>
                         </a>
-{{--                        <a href="{{ route('panel.order.create') }}">--}}
-{{--                            <li class="second-li my-3 ">--}}
-{{--                                <i class="fa-solid fa-plus"></i>--}}
-{{--                                ثبت سفارش--}}
-{{--                            </li>--}}
-{{--                        </a>--}}
                     </ul>
                 </li>
                 <li class="first-li second">
@@ -67,6 +61,14 @@
                             </li>
                         </a>
                     </ul>
+                </li>
+                <li class="first-li third">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <form action="{{ route('login.destroy') }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"><span>خروج</span></button>
+                    </form>
                 </li>
             </ul>
         </section>

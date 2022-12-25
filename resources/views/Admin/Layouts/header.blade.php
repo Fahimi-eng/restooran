@@ -3,14 +3,6 @@
         <section class="menu-btn mt-3 ps-3 d-lg-none">
             <i id="bars" class="fa-solid fa-bars"></i>
         </section>
-        <form action="#" class=" d-flex search-form">
-            <div class="search-field">
-                <input type="text" name="" id="" placeholder="اینجا جستجو کنید...">
-            </div>
-            <button type="submit">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </form>
     </section>
     <section class="profile-section d-flex">
         <section class="profile-info">

@@ -2,6 +2,8 @@
 @push('scripts')
     <script src="/Client/js/persian-date.min.js"></script>
     <script src="/Client/js/persian-datepicker.min.js"></script>
+    <script src="/Client/js/order.js"></script>
+
     <script>
     $(document).ready(function() {
         $(".persianDatePicker").pDatepicker({
@@ -16,6 +18,7 @@
         });
     });
     </script>
+
 @endpush
 @push('links')
     <link rel="stylesheet" href="/Client/css/persian-datepicker.min.css">
@@ -81,6 +84,7 @@
             <div class="d-none">
                 <label for="table" class="text-danger mt-3">انتخاب میز</label>
                 <select required name="table" id="table" class="form-select form-control" aria-label="Default select example" >
+
                 </select>
             </div>
             <div id='foodPerson' class="d-flex flex-wrap flex-column flex-md-row py-3 justify-content-start flex-wrap">
