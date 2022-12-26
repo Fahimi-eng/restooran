@@ -1,8 +1,8 @@
 <section id="id1" class="fix-switch">
     <i class="fa-solid fa-xmark  menu-close d-lg-none"></i>
     <section class="switch px-3 py-4">
-        <section class="logo px-3 py-4">
-            <img src="/Admin/images/logo.png" alt="">
+        <section class="logo border border-2 border-dark w-100">
+            <img class="me-3" src="/Admin/images/fdfd.png" alt="">
         </section>
         <section class="lists">
             <ul class="first-ul px-1 mt-4">
@@ -64,10 +64,10 @@
                 </li>
                 <li class="first-li third">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    <form action="{{ route('login.destroy') }}" method="post">
+                    <form class="d-inline-block" action="{{ route('login.destroy') }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"><span>خروج</span></button>
+                        <button class="btn d-inline-block" type="submit"><span>خروج</span></button>
                     </form>
                 </li>
             </ul>

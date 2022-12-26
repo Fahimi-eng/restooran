@@ -1,6 +1,6 @@
 @extends('Admin.Layouts.master')
 @section('content')
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center border-bottom border-dark">
         <h4 class="m-5 d-inline-block">افزودن میز جدید</h4>
         <a class="btn btn-primary m-5" href="{{ route('panel.tables') }}"> بازگشت به صفحه قبل</a>
     </div>

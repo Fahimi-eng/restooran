@@ -14,7 +14,6 @@ class ajaxController extends Controller
         $isExists = \App\Models\Order::query()->where('date',$date)->where('time',$request->get('time'))->exists();
         if($isExists or 1)
         {
-//        $tables=\App\Models\Order::query()->where('date', $date)->where('time', '<>' ,$request->get('time'))->with('tables')->get();
             $reservedTable = \App\Models\Order::query()->where('date',$date)->where('time',$request->get('time'))->get();
             $ids = [];
             foreach ($reservedTable as $table){

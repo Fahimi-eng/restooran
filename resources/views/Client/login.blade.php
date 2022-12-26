@@ -11,6 +11,7 @@
 </head>
 <body dir="rtl">
 <form action="{{ route('login.store') }}" method="post" class="login-form border d-flex flex-column justify-content-evenly rounded h-50 w-25">
+    @csrf
     @method('POST')
     <p class="login-text">
           <span class="fa-stack fa-lg">

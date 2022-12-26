@@ -1,6 +1,6 @@
 @extends('Admin.Layouts.master')
 @section('content')
-<div class="d-flex justify-content-between align-items-center">
+<div class="d-flex justify-content-between align-items-center border-dark border-bottom">
     <h4 class="m-5 d-inline-block">تنظیمات سایت</h4>
 </div>
 
@@ -38,21 +38,7 @@
         </div>
     </div>
 
-{{--    <div class="row my-3 g-3 align-items-center">--}}
-{{--        <div class="col-auto">--}}
-{{--            <label class="col-form-label" for="inputGroupFile02">عکس</label>--}}
-{{--        </div>--}}
-{{--        <div class="col-auto">--}}
-{{--            <input required name="image" type="file" class="form-control" id="inputGroupFile02">--}}
-{{--        </div>--}}
-{{--        <div class="col-auto">--}}
-{{--                <span id="selectbox" class="form-text">--}}
-{{--                عکسی با ابعاد <span dir="ltr">3 x 4</span> انتخاب نمایید--}}
-{{--                </span>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-    <div style="height: 1px" class="bg-primary my-4"></div>
+    <div style="height: 1px" class="bg-dark my-4"></div>
 {{--    ----------------------------------------------        --}}
     <p class=" text-bold fs-4">درباره ما</p>
     <div class="row g-3 align-items-center mb-5">
@@ -117,21 +103,7 @@
         </div>
     </div>
 
-{{--    <div class="row my-3 g-3 align-items-center">--}}
-{{--        <div class="col-auto">--}}
-{{--            <label class="col-form-label" for="inputGroupFile02">عکس </label>--}}
-{{--        </div>--}}
-{{--        <div class="col-auto">--}}
-{{--            <input required name="image" type="file" class="form-control" id="inputGroupFile02">--}}
-{{--        </div>--}}
-{{--        <div class="col-auto">--}}
-{{--                <span id="selectbox" class="form-text">--}}
-{{--                عکسی با ابعاد <span dir="ltr">3 x 4</span> انتخاب نمایید--}}
-{{--                </span>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-    <div style="height: 1px" class="bg-primary my-4"></div>
+    <div style="height: 1px" class="bg-dark my-4"></div>
     {{--        ---------------------------------         --}}
     <p class=" text-bold fs-4"> پاورقی</p>
     <div class="row g-3 align-items-center my-2">

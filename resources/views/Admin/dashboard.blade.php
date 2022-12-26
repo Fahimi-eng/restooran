@@ -1,11 +1,11 @@
 @extends('Admin.Layouts.master')
 @section('content')
-    <div>
+    <div class="border-bottom border-dark">
         <h4 class="m-5">لیست سفارشات</h4>
     </div>
     <table class="table">
         <thead class="thead-light">
-        <tr>
+        <tr class="border-dark">
             <th scope="col">#</th>
             <th scope="col">سفارش دهنده</th>
             <th scope="col">تعداد میهمان </th>

@@ -2,7 +2,8 @@
     --light:#023047;
     --dark:#343a40;
     --gray-dark:#343a40;
-    --primary:#90e0ef;
+    --primary:#F4EDE5;
+    /*--primary:#90e0ef;*/
     --secondary:#5B6BDC;
     --white:#FFFFFF;
 }
@@ -41,7 +42,7 @@ a{
 
 }
 .fa-eye{
-    transition: all ease .4s;
+    transition: all ease .2s;
 }
 .fa-eye:hover{
     color: #90E0EF;
@@ -73,7 +74,7 @@ li{
     cursor: pointer;
     padding: 5px 8px;
     width: 100%;
-    transition: all ease .4s;
+    transition: all ease .2s;
 }
 .lists li a li:hover{
     border-right: 1px solid #333;
@@ -159,7 +160,7 @@ li{
     height: 77px;
     width: 77px;
     cursor: pointer;
-    transition: all ease 0.4s;
+    transition: all ease 0.2s;
 }
 .profile-img:hover{
     box-shadow: -1px -1px 5px #333,

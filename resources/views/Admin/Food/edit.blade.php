@@ -1,8 +1,8 @@
 @extends('Admin.Layouts.master')
 @section('content')
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center border-dark border-bottom">
         <h4 class="m-5 d-inline-block">ویرایش غذا</h4>
-        <a class="btn btn-primary m-5" href="{{ route('panel.food') }}"> بازگشت به صحفه قبل</a>
+        <a class="btn btn-primary m-5" href="{{ route('panel.food') }}"> بازگشت به صفحه قبل</a>
     </div>
 
     <form dir="rtl" action="{{ route('panel.food.update',$food) }}" method="post" class="form m-5" enctype="multipart/form-data">

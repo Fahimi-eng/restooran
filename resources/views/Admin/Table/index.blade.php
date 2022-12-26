@@ -1,12 +1,12 @@
 @extends('Admin.Layouts.master')
 @section('content')
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center border-bottom border-dark">
         <h4 class="m-5 d-inline-block">لیست میزها</h4>
         <a class="btn btn-primary m-5" href="{{ route('panel.tables.create') }}"> میز جدید</a>
     </div>
     <table class="table">
         <thead>
-        <tr>
+        <tr class="border-dark">
             <th scope="col">#</th>
             <th scope="col">نام میز</th>
             <th scope="col">تعداد صندلی</th>

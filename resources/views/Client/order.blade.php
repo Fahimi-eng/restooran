@@ -22,7 +22,6 @@
 @endpush
 @push('links')
     <link rel="stylesheet" href="/Client/css/persian-datepicker.min.css">
-
 @endpush
 @section('content')
     <!-- start form -->
@@ -35,7 +34,7 @@
             <label for="name"><span class="fs-6">نام :</span></label>
             <p><input required autocomplete="off" name="name" class="rounded-3" placeholder="نام خود را وارد کنید..." oninput="this.className = ''"></p>
             <label for="phone"><span class="fs-6">تلفن :</span></label>
-            <p><input required type="tel"  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" autocomplete="off" name="phone" class="rounded-3" placeholder="شماره موبایل..." oninput="this.className = ''"></p>
+            <p><input required type="text"   autocomplete="off" name="phone" class="rounded-3" placeholder="شماره موبایل..." oninput="this.className = ''"></p>
             <div>
                 <label for="guest"><span class="fs-6 text-danger">تعداد افراد :</span></label>
                 <p><input required name="guest" onchange='selectePerson(this)' type="number" min="1" max="10" class="rounded-3" placeholder="تعداد ..." oninput="this.className = ''"></p>
@@ -84,7 +83,7 @@
             <div class="d-none">
                 <label for="table" class="text-danger mt-3">انتخاب میز</label>
                 <select required name="table" id="table" class="form-select form-control" aria-label="Default select example" >
-
+                    سسس
                 </select>
             </div>
             <div id='foodPerson' class="d-flex flex-wrap flex-column flex-md-row py-3 justify-content-start flex-wrap">

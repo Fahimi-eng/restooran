@@ -18,16 +18,16 @@ async function checkDate(e){
     let date = dateInput.value;
     console.log('start check date ajax');
     let free_table = await $.ajax({
-        url:'/ajax/order/checkDate',
-        type:'POST',
+        url:'http://127.0.0.1:8000/ajax/order/checkDate',
+        type:'GET',
+        dataType: 'json',
         data:{
             _token: '{{ csrf_token() }}',
             date: date,
             time: time
         },
         success:function (data){
-            // console.log(data);
-            console.log('Success check date ajax');
+            console.log('Success check date ajax' , data);
         }
     });
     console.log('End check date ajax');

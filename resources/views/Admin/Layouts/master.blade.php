@@ -15,13 +15,13 @@
     <title>پیشخوان</title>
 </head>
 <body dir="rtl">
-<section class="main d-flex flex-lg-column position-relative">
+<section class="main mb-5 d-flex flex-lg-column position-relative">
     <!-- Left-Section -->
     <section class="contents">
     @include('Admin.Layouts.header')
     <!-- Main Contents -->
-        <section class=" mt-3 border content-section" style="height: auto; width: 100%; background-color: #fff;">
-            <div class="content-container border py-2 px-2">
+        <section class=" mt-0 border content-section" style="height: auto; width: 100%; background-color: #fff;">
+            <div class="content-container border pb-2 px-2 border border-dark border-2">
                 @yield('content')
             </div>
         </section>

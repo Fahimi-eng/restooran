@@ -45,7 +45,7 @@ Route::get('/', [homeController::class,'index'])->name('home');
 Route::get('/order', [homeController::class,'order'])->name('order');
 Route::post('/order/submit', [homeController::class,'submit'])->name('order.submit');
 Route::get('ajax/get/food',[ajaxController::class,'getFood']);
-Route::post('ajax/order/checkDate',[ajaxController::class,'checkDate']);
+Route::get('ajax/order/checkDate',[ajaxController::class,'checkDate']);
 //login
 Route::middleware('guest')->group(function(){
     Route::get('/login',[LoginController::class,'create'])->name('login.create');

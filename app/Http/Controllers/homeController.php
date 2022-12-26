@@ -62,24 +62,29 @@ class homeController extends Controller
 
     public function submit(Request $request)
     {
+
 //        check the same reserve
         $same_time = Order::query()->where('date' , \request('date'))->where('time' , \request('time'))->first();
         $same_table = Table::query()->find(\request('table'))->get();
+
         if ($same_table != null && $same_time != null)
         {
             return redirect()->back();
         }
+
 //        calculate the type and numbers of received foods
         $foods = $request->input('foods');
         $food_types =  $this->get_food_types_of($foods);
         $food_count = $this->count_numbers_of_food_from_food_types($food_types,$foods);
 //        calculate the bill of order
         $bill = 0;
+
         for ($i=0 ; $i < count($food_types) ; $i++)
         {
             $cost = Food::query()->where('id', $food_types[$i])->first();
             $bill += ($cost->price*$food_count[$i]);
         }
+
 //        shetabit and Payment gateway
 //        convert persian date to gregorian
         $dates = explode(',', \request('date'));
@@ -102,5 +107,6 @@ class homeController extends Controller
          return view('Client.bill',[
              'bill' => Order::query()->find($order)->with('foods')->get()
          ]);
+
     }
 }
