@@ -3,7 +3,7 @@
     <div class="border-bottom border-dark">
         <h4 class="m-5">لیست سفارشات</h4>
     </div>
-    <table class="table">
+    <table class="table height-switch">
         <thead class="thead-light">
         <tr class="border-dark">
             <th scope="col">#</th>

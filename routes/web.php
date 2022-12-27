@@ -9,7 +9,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\settingController;
 use Illuminate\Support\Facades\Route;
 
-
 //Panel Routes
 
 Route::middleware('auth')->prefix('panel')->name('panel.')->group(function (){
@@ -37,13 +36,14 @@ Route::middleware('auth')->prefix('panel')->name('panel.')->group(function (){
     //Setting Routes
     Route::get('setting/edit',[settingController::class,'edit'])->name('setting.edit');
     Route::post('setting/update/{setting}',[settingController::class,'update'])->name('setting.update');
-
 });
 
 //Client Routes
 Route::get('/', [homeController::class,'index'])->name('home');
 Route::get('/order', [homeController::class,'order'])->name('order');
 Route::post('/order/submit', [homeController::class,'submit'])->name('order.submit');
+Route::post('/order/pay/{id}', [homeController::class,'pay'])->name('order.pay');
+Route::get('/order/cancel/{id}', [homeController::class,'cancel'])->name('order.cancel');
 Route::get('ajax/get/food',[ajaxController::class,'getFood']);
 Route::get('ajax/order/checkDate',[ajaxController::class,'checkDate']);
 //login

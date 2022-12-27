@@ -16,6 +16,14 @@ use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 
 class homeController extends Controller
 {
+    public function getPersianDate($date)
+    {
+        $date1 = new \Carbon\Carbon($date);
+        $date2 = \Morilog\Jalali\CalendarUtils::tojalali($date1->year, $date1->month, $date1->day);
+        $date3 = "{$date2[2]}-{$date2[1]}-{$date2[0]}";
+        return $date3;
+    }
+
     public function get_food_types_of($foods)
     {
         $food=array();
@@ -104,9 +112,25 @@ class homeController extends Controller
          $order->foods()->attach([$food_types[$i]],['count' => $food_count[$i]]);
         }
          $order->tables()->attach(\request('table'));
+         $test = Order::query()->where('id',$order->id)->with('foods')->with('tables')->first();
          return view('Client.bill',[
-             'bill' => Order::query()->find($order)->with('foods')->get()
+             'bill' => $test,
+             'date' => $this->getPersianDate($test->date)
          ]);
+    }
 
+    public function pay($id)
+    {
+        Order::query()->find($id)->update([
+           'status' => 'done'
+        ]);
+        return redirect()->route('home');
+    }
+    public function cancel($id)
+    {
+        Order::query()->find($id)->update([
+            'status' => 'failed'
+        ]);
+        return redirect()->route('home');
     }
 }

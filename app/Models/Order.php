@@ -19,4 +19,6 @@ class Order extends Model
     {
         return $this->belongsToMany(Table::class);
     }
+
+
 }
